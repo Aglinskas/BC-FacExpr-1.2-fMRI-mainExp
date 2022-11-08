@@ -19,10 +19,10 @@ nTrials = length(videos);
 
 myTrials = struct;
 [myTrials(1:nTrials).moviename] = deal(videos{:});
-[myTrials(1:nTrials).tex] = deal([]);
-[myTrials(1:nTrials).response] = deal([]);
-[myTrials(1:nTrials).RT] = deal([]);
-[myTrials(1:nTrials).t_on] = deal([]);
-[myTrials(1:nTrials).t_off] = deal([]);
+% [myTrials(1:nTrials).tex] = deal([]);
+% [myTrials(1:nTrials).response] = deal([]);
+% [myTrials(1:nTrials).RT] = deal([]);
+% [myTrials(1:nTrials).t_on] = deal([]);
+% [myTrials(1:nTrials).t_off] = deal([]);
 
 end

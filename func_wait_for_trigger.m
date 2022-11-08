@@ -6,7 +6,7 @@ function func_wait_for_trigger(win,trigger_key)
 % RestrictKeysForKbCheck([1:length(keyCode)] ~= KbName(trigger)); % ignore the trigger keys
 
 oldTextSize = Screen('TextSize', win, 50);
-DrawFormattedText(win, 'Waiting to start', 'center', 'center', []);
+DrawFormattedText(win, 'Waiting to start', 'center', 'center', [255 255 255]);
 Screen('Flip', win);
 
 % Only check the trigger key
