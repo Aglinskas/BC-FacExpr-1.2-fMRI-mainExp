@@ -1,11 +1,10 @@
-function [pressedKey,pressedTimes,t_video_on,t_video_off] = func_playmovie_with_response(moviename,win,windowRect)
+function [pressedKey,pressedTimes,t_video_on,t_video_off] = func_playmovie_with_response_scanner(moviename,win,windowRect,buttons)
 
 
 % Open movie file:
 %moviename = myTrials(trial).moviename
 %moviename = myTrials(1).moviename
 movie = Screen('OpenMovie', win, moviename);
-
 %% Resize the movie
 
 movie_size = [512 512]; % /2
@@ -42,16 +41,29 @@ while 1
     Screen('Close', tex);
 
 
-    isPressed = 0;
-    [keyIsDown, secs, keyCode, deltaSecs] = KbCheck;
+    % Key
+    % 
+    % RestrictKeysForKbCheck([4, 6, 7])
+    % KbName('UnifyKeyNames')
+    RestrictKeysForKbCheck(KbName({buttons.left,buttons.right,buttons.escape}));
+
+    %isPressed = 0;
+    [keyIsDown, secs, keyCode, deltaSecs] = KbCheck(-3); % KbCheck(-3) scans all devices
     if keyIsDown
-        isPressed = 1;
+        %isPressed = 1;
+
+        if strcmp(KbName(keyCode),buttons.escape); error('Escape Key Pressed'); end
+        %^ if ESC pressed, end experiment
+
         pressedKey = [pressedKey ',' KbName(keyCode)];
         pressedTimes = [pressedTimes secs-t_video_on];
         DisableKeysForKbCheck(keyCode==1);
     end
    
 end
+
+RestrictKeysForKbCheck([]); % Release all keys
+
 t_video_off = GetSecs;
 % Stop playback:
 Screen('PlayMovie', movie, 0);
