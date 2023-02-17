@@ -8,9 +8,10 @@ function myTrials = funct_get_myTrials_disfa(subject,run)
 % jittered ISI of 4-8 seconds
 % each run approx 9 minutes
 
-videos = dir('./stimuli/*.mp4');
+%videos = dir('./stimuli/*.mp4');
+videos = dir('./stimuli_experiment/*.mp4');
 videos = {videos.name}';
-videos = fullfile(pwd,'/stimuli',videos);
+videos = fullfile(pwd,'/stimuli_experiment',videos);
 videos = Shuffle(videos);
 nTrials = length(videos);
 
@@ -31,13 +32,16 @@ myTrials = struct;
 for i = 1:length(myTrials)
 temp = strsplit(myTrials(i).moviename,'/')';
 temp = temp{end};
-temp = strsplit(temp,'_');
-condition = temp{2}(isletter(temp{2}));
+%temp = strsplit(temp,'_');
+%condition = temp{2}(isletter(temp{2}));
+condition = temp(4);
+identity = temp(3);
 myTrials(i).emotion = condition;
+myTrials(i).identity = identity;
 
 short = {'n' 'd' 'f' 's' 'su' 'h'};
-long = {'neutral' 'disgust' 'fear' 'sadness' 'surprise' 'happiness'};
-w = cellfun(@(x) strcmp(myTrials(i).emotion,x),{'n' 'd' 'f' 's' 'su' 'h'});
+long = {'neutral' 'disgust' 'fear' 'sadness' 'happiness'};
+w = cellfun(@(x) strcmp(myTrials(i).emotion,x),{'n' 'd' 'f' 's' 'h'});
 myTrials(i).label = long{w};
 
 end

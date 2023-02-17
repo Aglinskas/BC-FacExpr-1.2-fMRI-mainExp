@@ -8,7 +8,7 @@ movie = Screen('OpenMovie', win, moviename);
 
 %% Resize the movie
 
-movie_size = [1280 720]/2 ;
+movie_size = [512 512]; % /2
 cntr = windowRect(3:end)/2 ;
 destRect = [
     cntr(1)- (movie_size(1)/2)
