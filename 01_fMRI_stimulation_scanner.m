@@ -84,7 +84,7 @@ save(fullfile('Data',sprintf('myTrials_S%02d-run-%02d.mat',subID,runID)),'myTria
 save(fullfile('Data',sprintf('workspace_S%02d-run-%02d.mat',subID,runID)));
 
 
-
+% TODO: show accuracy at the end of run
 DrawFormattedText(win, sprintf('End of run %d/6',runID), 'center', 'center', [255 255 255]);
 Screen('Flip', win);
 pause(5)
