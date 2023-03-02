@@ -13,7 +13,9 @@ function stimulation(subID,runID)
 
 %clc;clear all;close all;sca;
 %stimulation(0,0)
-%subID = 0;runID = 0;
+%subID = 100;runID = 1;
+
+addpath('./scripts_matlab')
 
 myTrials = funct_get_myTrials_disfa(subID,runID);
 

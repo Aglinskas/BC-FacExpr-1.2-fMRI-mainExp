@@ -9,13 +9,28 @@ function myTrials = funct_get_myTrials_disfa(subject,run)
 % each run approx 9 minutes
 
 %videos = dir('./stimuli/*.mp4');
-videos = dir('./stimuli_experiment/*.mp4');
+
+
+%%%% Make run orders
+% run_order = zeros(6,100)';
+% for i = 1:100
+% run_order(i,:) = Shuffle(1:6);
+% end
+% run_order(100,:) = 1:6
+% save('./scripts_matlab/run_order.mat','run_order')
+
+
+load('./scripts_matlab/run_order.mat')
+
+stimuli_folders = dir('./stimuli/stimuli_experiment/stimuli_*');
+stimuli_folders = {stimuli_folders.name}';
+
+run_dir = sprintf('./stimuli/stimuli_experiment/%s/',stimuli_folders{run_order(subject,run)});
+videos = dir([run_dir '*.mp4']);
 videos = {videos.name}';
-videos = fullfile(pwd,'/stimuli_experiment',videos);
+videos = fullfile(pwd,run_dir,videos);
 videos = Shuffle(videos);
 nTrials = length(videos);
-
-
 
 
 myTrials = struct;

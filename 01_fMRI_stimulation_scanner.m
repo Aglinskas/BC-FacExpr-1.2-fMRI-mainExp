@@ -13,10 +13,10 @@ function stimulation(subID,runID)
 
 %clc;clear all;close all;sca;
 %stimulation(0,0)
-%subID = 0;runID = 0;
+%subID = 100;runID = 1;
 
 commandwindow
-addpath('scripts_matlab/')
+addpath('./scripts_matlab/')
 
 myTrials = funct_get_myTrials_disfa(subID,runID);
 
@@ -85,7 +85,7 @@ save(fullfile('Data',sprintf('workspace_S%02d-run-%02d.mat',subID,runID)));
 
 
 % TODO: show accuracy at the end of run
-DrawFormattedText(win, sprintf('End of run %d/6',runID), 'center', 'center', [255 255 255]);
+DrawFormattedText(win, sprintf('End of run %d/6', ), 'center', 'center', [255 255 255]);
 Screen('Flip', win);
 pause(5)
 sca; % close PTB
