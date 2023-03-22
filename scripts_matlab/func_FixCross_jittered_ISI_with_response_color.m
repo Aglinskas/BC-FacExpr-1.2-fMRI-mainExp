@@ -11,7 +11,7 @@ pressedKey = [];
 pressedTimes = [];
 
 DisableKeysForKbCheck([]);
-RestrictKeysForKbCheck(KbName({buttons.left,buttons.right,buttons.escape}));
+RestrictKeysForKbCheck(KbName({buttons.left,buttons.right,buttons.escape,buttons.space}));
 
 isPressed = 0;
 
@@ -24,7 +24,7 @@ while GetSecs < t_cross_on + ISI %t_presented + opts.instruct_time
     [keyIsDown, secs, keyCode, deltaSecs] = KbCheck(-3);
     if keyIsDown
 
-        if strcmp(KbName(keyCode),buttons.escape); error('Escape Key Pressed'); end
+        if strcmp(KbName(keyCode),buttons.escape); close all;sca;error('Escape Key Pressed'); end
 
         isPressed = 1;
         pressedKey = [pressedKey ',' KbName(keyCode)];

@@ -52,7 +52,7 @@ while 1
     if keyIsDown
         %isPressed = 1;
 
-        if strcmp(KbName(keyCode),buttons.escape); error('Escape Key Pressed'); end
+        if strcmp(KbName(keyCode),buttons.escape); close all;sca;error('Escape Key Pressed'); end
         %^ if ESC pressed, end experiment
 
         pressedKey = [pressedKey ',' KbName(keyCode)];
