@@ -1,4 +1,4 @@
-function A01_fMRI_stimulation_scanner(subID,runID)
+function A01Stimulation(subID,runID)
 % Runs synthetic expressions main experiment fMRI stimulation
 % Experimental variables:
 % 6 Runs
@@ -12,7 +12,7 @@ function A01_fMRI_stimulation_scanner(subID,runID)
 
 
 %clc;clear all;close all;sca;
-%stimulation(0,0)
+%A01Stimulation(100,1)
 %subID = 100;runID = 1;
 
 commandwindow
@@ -27,6 +27,7 @@ buttons.left = '3#' ;
 buttons.right = '4$' ;
 buttons.triggers = { '=+' , '5%' , 't'};
 buttons.escape = 'ESCAPE';
+buttons.space= 'space';
 
 % Set up the window
 PsychDefaultSetup(2);
@@ -47,7 +48,7 @@ func_wait_for_trigger_scanner(win,buttons)
 expStart = GetSecs; % Get time0
 %%% Experiment loop
 
-func_FixCross_jittered_ISI(win) % Fix Cross with variable ISI (4-8 seconds)
+func_FixCross_jittered_ISI(win,buttons) % Fix Cross with variable ISI (4-8 seconds)
 for trial = 1:length(myTrials)
 
 clc;
@@ -85,7 +86,7 @@ save(fullfile('Data',sprintf('workspace_S%02d-run-%02d.mat',subID,runID)));
 
 
 % TODO: show accuracy at the end of run
-DrawFormattedText(win, sprintf('End of run %d/6', ), 'center', 'center', [255 255 255]);
+DrawFormattedText(win, sprintf('End of run %d/6',runID), 'center', 'center', [255 255 255]);
 Screen('Flip', win);
 pause(5)
 sca; % close PTB

@@ -40,6 +40,17 @@ videos_sadness = Shuffle(videos_sadness);
 myPractice = struct();
 l = 0;
 
+
+% Neutral
+for i = 1:5
+l=l+1;
+myPractice(l).moviename = fullfile(stimuli_dir,'neutral',videos_neutral{i});
+myPractice(l).emotion = 'n';
+myPractice(l).label = 'neutral';
+myPractice(l).category = 'train';
+end
+
+
 % Happiness
 for i = 1:5
 l=l+1;
@@ -76,14 +87,6 @@ myPractice(l).label = 'disgust';
 myPractice(l).category = 'train';
 end
 
-% Neutral
-for i = 1:5
-l=l+1;
-myPractice(l).moviename = fullfile(stimuli_dir,'neutral',videos_neutral{i});
-myPractice(l).emotion = 'n';
-myPractice(l).label = 'neutral';
-myPractice(l).category = 'train';
-end
 
 
 
