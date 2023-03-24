@@ -144,7 +144,7 @@ moviename = myPractice(l).moviename;
 [pressedKey,pressedTimes,t_cross_on,t_cross_off] = func_FixCross_jittered_ISI_with_response_color(win,myPractice(l).isTarget,buttons);
 myPractice(l).isPressed = ~isempty(pressedKey);
 end
-acc= mean([myPractice(l-9:l).isPressed]==[myPractice(l-10:l).isTarget]);
+acc= mean([myPractice(l-9:l).isPressed]==[myPractice(l-9:l).isTarget]);
 
 instructions = sprintf('Test block 1/3\nYou accuracy was %i%%\n Press space for another block',acc*100)
 func_show_instructions(win,instructions,buttons,30)
@@ -157,7 +157,7 @@ moviename = myPractice(l).moviename;
 [pressedKey,pressedTimes,t_cross_on,t_cross_off] = func_FixCross_jittered_ISI_with_response_color(win,myPractice(l).isTarget,buttons);
 myPractice(l).isPressed = ~isempty(pressedKey);
 end
-acc= mean([myPractice(l-9:l).isPressed]==[myPractice(l-10:l).isTarget]);
+acc= mean([myPractice(l-9:l).isPressed]==[myPractice(l-9:l).isTarget]);
 
 instructions = sprintf('Test block 2/3\nYou accuracy was %i%%\n Press space for another block',acc*100)
 func_show_instructions(win,instructions,buttons,30)
@@ -170,7 +170,7 @@ moviename = myPractice(l).moviename;
 [pressedKey,pressedTimes,t_cross_on,t_cross_off] = func_FixCross_jittered_ISI_with_response_color(win,myPractice(l).isTarget,buttons);
 myPractice(l).isPressed = ~isempty(pressedKey);
 end
-acc= mean([myPractice(l-9:l).isPressed]==[myPractice(l-10:l).isTarget]);
+acc= mean([myPractice(l-9:l).isPressed]==[myPractice(l-9:l).isTarget]);
 
 instructions = sprintf('Test block 3/3\nYou accuracy was %i%%\n Press SPACE to terminate or\nPress ENTER to repeat test phase',acc*100)
 func_show_instructions(win,instructions,buttons,30)
