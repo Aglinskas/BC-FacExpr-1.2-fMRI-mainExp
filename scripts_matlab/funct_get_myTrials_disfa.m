@@ -26,7 +26,8 @@ stimuli_folders = dir('./stimuli/stimuli_experiment/stimuli_*');
 stimuli_folders = {stimuli_folders.name}';
 
 run_dir = sprintf('./stimuli/stimuli_experiment/%s/',stimuli_folders{run_order(subject,run)});
-videos = dir([run_dir '*.mp4']);
+%videos = dir([run_dir '*.mp4']);
+videos = dir([run_dir '*.mov']);
 videos = {videos.name}';
 videos = fullfile(pwd,run_dir,videos);
 videos = Shuffle(videos);

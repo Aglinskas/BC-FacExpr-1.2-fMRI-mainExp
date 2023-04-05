@@ -14,11 +14,17 @@ addpath('./scripts_matlab/');
 %stimuli_dir = './stimuli/stimuli_practice2';
 stimuli_dir = fullfile(pwd,'/stimuli/stimuli_practice2');
 
-videos_fear = dir(fullfile(stimuli_dir,'fearsurprise','*.mp4'));
-videos_neutral = dir(fullfile(stimuli_dir,'neutral','*.mp4'));
-videos_disgust = dir(fullfile(stimuli_dir,'disgust','*.mp4'));
-videos_happiness = dir(fullfile(stimuli_dir,'happiness','*.mp4'));
-videos_sadness = dir(fullfile(stimuli_dir,'sadness','*.mp4'));
+% videos_fear = dir(fullfile(stimuli_dir,'fearsurprise','*.mp4'));
+% videos_neutral = dir(fullfile(stimuli_dir,'neutral','*.mp4'));
+% videos_disgust = dir(fullfile(stimuli_dir,'disgust','*.mp4'));
+% videos_happiness = dir(fullfile(stimuli_dir,'happiness','*.mp4'));
+% videos_sadness = dir(fullfile(stimuli_dir,'sadness','*.mp4'));
+
+videos_fear = dir(fullfile(stimuli_dir,'fearsurprise','*.mov'));
+videos_neutral = dir(fullfile(stimuli_dir,'neutral','*.mov'));
+videos_disgust = dir(fullfile(stimuli_dir,'disgust','*.mov'));
+videos_happiness = dir(fullfile(stimuli_dir,'happiness','*.mov'));
+videos_sadness = dir(fullfile(stimuli_dir,'sadness','*.mov'));
 
 
 
