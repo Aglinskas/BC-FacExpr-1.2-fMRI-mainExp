@@ -14,11 +14,13 @@ function A01Stimulation(subID,runID)
 %clc;clear all;close all;sca;
 %A01Stimulation(100,1)
 %subID = 100;runID = 1;
+%subID = 1;runID = 1;
 
 commandwindow
 addpath('./scripts_matlab/')
 
-myTrials = funct_get_myTrials_disfa(subID,runID);
+%myTrials = funct_get_myTrials_disfa(subID,runID);
+myTrials = funct_get_myTrials_disfa_halfruns(subID,runID);
 
 
 % Prep button responses
@@ -48,8 +50,14 @@ func_wait_for_trigger_scanner(win,buttons)
 expStart = GetSecs; % Get time0
 %%% Experiment loop
 
-func_FixCross_jittered_ISI(win,buttons) % Fix Cross with variable ISI (4-8 seconds)
+func_FixCross_fixed_(win,buttons,3,[1 1 1]) % Fix Cross with fixed 3 second ISI to prep for experiment
 for trial = 1:length(myTrials)
+
+    if trial==36 % Mid run pause
+    func_FixCross_fixed_(win,buttons,17,[0 0 0])
+    func_FixCross_fixed_(win,buttons,3,[1,1,1])
+    end
+
 
 clc;
 disp(trial)
@@ -63,6 +71,7 @@ isTarget = strcmp(myTrials(trial).label,'neutral');
 [pressedKey_cross,pressedTimes_cross,t_cross_on,t_cross_off] = func_FixCross_jittered_ISI_with_response_color(win,isTarget,buttons);
 
 % Record Video information and responses to myTrials
+
 myTrials(trial).response_video = pressedKey_video; 
 myTrials(trial).RT_video = pressedTimes_video;
 myTrials(trial).video_on = t_video_on-expStart;
@@ -86,12 +95,22 @@ save(fullfile('Data',sprintf('workspace_S%02d-run-%02d.mat',subID,runID)));
 
 
 % TODO: show accuracy at the end of run
-DrawFormattedText(win, sprintf('End of run %d/6',runID), 'center', 'center', [255 255 255]);
+acc = round(mean(~cellfun(@isempty,{myTrials([myTrials.isTarget]).response_cross}))*100);
+DrawFormattedText(win, sprintf('End of run %d/6\n Accuracy %d%%',runID,acc), 'center', 'center', [255 255 255]);
 Screen('Flip', win);
 pause(5)
 sca; % close PTB
 
 end %ends function
+
+
+[myTrials.isTarget]
+
+
+
+
+
+
 
 
 

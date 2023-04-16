@@ -34,10 +34,12 @@ while GetSecs < t_cross_on + ISI %t_presented + opts.instruct_time
 
     % If response, dim the cross. 
     if isPressed & istarget
-        DrawFormattedText(win,'+','center','center',[0 255 0]*.3);
+        %DrawFormattedText(win,'+','center','center',[0 255 0]*.3);
+        DrawFormattedText(win,'+','center','center',[125 125 125]);
         [x t_cross_change] = Screen('flip',win);
     elseif isPressed & ~istarget
-        DrawFormattedText(win,'+','center','center',[255 0 0]*.3);
+        %DrawFormattedText(win,'+','center','center',[255 0 0]*.3);
+        DrawFormattedText(win,'+','center','center',[125 125 125]);
         [x t_cross_change] = Screen('flip',win);
 
     end
