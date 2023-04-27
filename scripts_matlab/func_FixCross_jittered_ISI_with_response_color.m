@@ -1,4 +1,4 @@
-function [pressedKey,pressedTimes,t_cross_on,t_cross_off] = func_FixCross_jittered_ISI_with_response_color(win,istarget,buttons)
+function [pressedKey,pressedTimes,t_cross_on,t_cross_off] = func_FixCross_jittered_ISI_with_response_color(win,istarget,buttons,cross_colors)
 
 oldTextSize = Screen('TextSize', win, 100);
 DrawFormattedText(win,'+','center','center',[255 255 255]);
@@ -35,16 +35,18 @@ while GetSecs < t_cross_on + ISI %t_presented + opts.instruct_time
     % If response, dim the cross. 
     if isPressed & istarget
         %DrawFormattedText(win,'+','center','center',[0 255 0]*.3);
-        DrawFormattedText(win,'+','center','center',[125 125 125]);
+        %DrawFormattedText(win,'+','center','center',[125 125 125]);
+        DrawFormattedText(win,'+','center','center',cross_colors(1,:));
         [x t_cross_change] = Screen('flip',win);
     elseif isPressed & ~istarget
         %DrawFormattedText(win,'+','center','center',[255 0 0]*.3);
-        DrawFormattedText(win,'+','center','center',[125 125 125]);
+        %DrawFormattedText(win,'+','center','center',[125 125 125]);
+        DrawFormattedText(win,'+','center','center',cross_colors(2,:));
         [x t_cross_change] = Screen('flip',win);
 
     end
 end
-
+[[0 255 0]*.3;]
 oldTextSize = Screen('TextSize', win, oldTextSize);
 t_cross_off = GetSecs;
 RestrictKeysForKbCheck([]); % Release keys

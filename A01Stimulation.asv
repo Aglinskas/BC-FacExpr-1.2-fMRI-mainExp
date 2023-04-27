@@ -12,9 +12,33 @@ function A01Stimulation(subID,runID)
 
 
 %clc;clear all;close all;sca;
-%A01Stimulation(100,1)
+%
+
+sca
+sca
+sca
+
+
+sca
+
+
+sca
+
+
+
+
+
+
+sca
+
+
+
+
+
+
+
 %subID = 100;runID = 1;
-%subID = 1;runID = 2;
+%subID = 1;runID = 1;
 
 commandwindow
 addpath('./scripts_matlab/')
@@ -35,7 +59,7 @@ buttons.space= 'space';
 PsychDefaultSetup(2);
 Screen('Preference', 'SkipSyncTests', 2)
 screenid = max(Screen('Screens'));
-screenid = 0
+%screenid = 0
 
 %[win, windowRect] = Screen(screenid, 'openwindow',[128 128 128],[]);
 [win, windowRect] = Screen(screenid, 'openwindow',[0 0 0],[]);

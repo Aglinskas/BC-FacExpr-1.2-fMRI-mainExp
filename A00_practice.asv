@@ -38,8 +38,8 @@ commandwindow;
 [win, windowRect] = Screen(screenid, 'openwindow',[125 125 125],[]);
 %hz=Screen('NominalFrameRate', win, 1, 20);
 Screen('GetFlipInterval',win);
-instructions = ['Welcome to the practice.\n' ...
-    'In the fMRI experiment you will be asked to\n' ...
+instructions = ['Welcome to the practice\n' ...
+    'in the fMRI experiment you will be asked to\n' ...
     'view videos of facial expressions\n' ...
     'and press a button when you see a\n' ...
     'NEUTRAL facial expression\n' ...
@@ -58,7 +58,7 @@ repeatTraining = true; % There's an option to not repeat at the end of loop
 while repeatTraining
 
 l = 0;
-instructions = '1\5\nFirst - you will see 5 videos showing NEUTRAL expressions,\nfollowed by fixation cross (4-6 seconds).\nYou dont have to do anything\njust observe the facial expressions';
+instructions = '1\5\nFirst - you will see 5 videos showing NEUTRAL expressions\nfollowed by fixation cross (4-6 seconds)\nYou dont have to do anything\njust observe the facial expressions';
 func_show_instructions(win,instructions,buttons,30);
 % Neutral
 for i = 1:5
@@ -94,7 +94,7 @@ func_FixCross_jittered_ISI(win,buttons)
 end
 
 
-instructions = '4/5\nNext you will see 5 videos showing SURPRISE';
+instructions = '4/5\nNext you will 5 videos showing SURPRISE';
 func_show_instructions(win,instructions,buttons,30);
 % Fear
 for i = 1:5
@@ -106,7 +106,7 @@ func_FixCross_jittered_ISI(win,buttons);
 end
 
 
-instructions = '5/5\nLastly you will see 5 videos showing DISGUST';
+instructions = '5/5\nLastly you will 5 videos showing DISGUST';
 func_show_instructions(win,instructions,buttons,30);
 % Disgust
 for i = 1:5
