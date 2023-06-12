@@ -1,0 +1,9 @@
+%data_dir = ''
+
+
+%cd into data dir
+
+files = dir('./myTrials_S*.mat');
+files = {files.name}';
+
+myTrials = 
