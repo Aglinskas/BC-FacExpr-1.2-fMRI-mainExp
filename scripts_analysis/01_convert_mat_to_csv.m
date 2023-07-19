@@ -1,5 +1,6 @@
 %data_dir = ''
 
+cd ../Data/
 
 %cd into data dir
 
@@ -9,6 +10,6 @@ n = length(files)
 
 %i = 1
 for i = 1:n
-myTrials = load(files{i})
+load(files{i},'myTrials')
 writetable(struct2table(myTrials), strrep(files{i},'.mat','.csv'))
 end
