@@ -19,6 +19,10 @@ function A01Stimulation(subID,runID)
 commandwindow
 addpath('./scripts_matlab/')
 
+% Preload ISI durations and shuffle them
+load('vec_ISIs.mat');
+Shuffle(vec_ISIs);
+
 %myTrials = funct_get_myTrials_disfa(subID,runID);
 myTrials = funct_get_myTrials_disfa_halfruns(subID,runID);
 
@@ -51,6 +55,7 @@ expStart = GetSecs; % Get time0
 %%% Experiment loop
 
 func_FixCross_fixed_(win,buttons,3,[1 1 1]) % Fix Cross with fixed 3 second ISI to prep for experiment
+
 for trial = 1:length(myTrials)
 
     if trial==36 % Mid run pause
@@ -69,7 +74,7 @@ disp(myTrials(trial).label)
 
 % Show Fixation Cross
 isTarget = strcmp(myTrials(trial).label,'neutral');
-[pressedKey_cross,pressedTimes_cross,t_cross_on,t_cross_off] = func_FixCross_jittered_ISI_with_response_color(win,isTarget,buttons,cross_colors);
+[pressedKey_cross,pressedTimes_cross,t_cross_on,t_cross_off] = func_FixCross_stored_ISI_with_response_color(win,isTarget,buttons,cross_colors,trial,vec_ISIs);
 
 % Record Video information and responses to myTrials
 
@@ -99,8 +104,10 @@ save(fullfile('Data',sprintf('workspace_S%02d-run-%02d.mat',subID,runID)));
 acc = round(mean(~cellfun(@isempty,{myTrials([myTrials.isTarget]).response_cross}))*100);
 DrawFormattedText(win, sprintf('End of run %d/6\n Accuracy %d%%',runID,acc), 'center', 'center', [255 255 255]);
 Screen('Flip', win);
-pause(5)
+pause(12)
 sca; % close PTB
+
+disp(sprintf('Run Duration: %.2f minutes',(GetSecs-expStart)/60))
 
 end %ends function
 

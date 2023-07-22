@@ -20,7 +20,7 @@ function myTrials = funct_get_myTrials_disfa_halfruns(subject,run)
 % save('./scripts_matlab/run_order.mat','run_order')
 % subject=1,run=1
 
-load('./scripts_matlab/run_order.mat')
+load('./scripts_matlab/run_order.mat');
 
 stimuli_folders = dir('./stimuli/stimuli_experiment/stimuli_*');
 stimuli_folders = {stimuli_folders.name}';
@@ -66,7 +66,7 @@ short = {'n' 'd' 'f' 's' 'su' 'h'};
 long = {'neutral' 'disgust' 'fear' 'sadness' 'happiness'};
 w = cellfun(@(x) strcmp(myTrials(i).emotion,x),{'n' 'd' 'f' 's' 'h'});
 myTrials(i).label = long{w};
-myTrials(i).isTarget = strcmp(myTrials(i).label,'neutral')
+myTrials(i).isTarget = strcmp(myTrials(i).label,'neutral');
 end
 
 %%% Prealocate responses
@@ -84,6 +84,19 @@ end
 [myTrials.video_dur] = deal([]);
 
 
+%%% Pre-allocate fix cross
+% for i = 1:length(myTrials)
+% ISI = 4 + (8-4) .* rand; % rand ISI between 4 and 8
+% myTrials(i).est_fix_cross = ISI;
+% end
+
+
+
+
+% for i = 1:length(myTrials)
+% movie = VideoReader(myTrials(i).moviename);
+% myTrials(i).est_video_duration = movie.duration;
+% end
 
 
 

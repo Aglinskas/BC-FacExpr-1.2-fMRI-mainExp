@@ -1,10 +1,10 @@
-function func_FixCross_jittered_ISI(win,buttons)
+function func_FixCross_fixed_ISI(win,buttons,ISI)
 
 oldTextSize = Screen('TextSize', win, 100);
 DrawFormattedText(win,'+','center','center');
 [x t_cross_on] = Screen('flip',win);
 %ISI = 4 + (8-4) .* rand; % rand ISI between 4 and 8
-ISI = 2 + (4-2) .* rand; % rand ISI between 4 and 8
+%ISI = 2 + (4-2) .* rand; % rand ISI between 4 and 8
 
 RestrictKeysForKbCheck(KbName({buttons.escape}));
 

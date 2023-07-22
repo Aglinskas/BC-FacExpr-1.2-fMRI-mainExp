@@ -30,11 +30,13 @@ cross_colors = [[0 255 0]*.3;[255 0 0]*.3] % Colors for fix cross: Green and Red
 
 RestrictKeysForKbCheck([]);
 commandwindow;
+ISI_train = .5;
+ISI_test = 3;
 %%
 
 %[win, windowRect] = Screen(screenid, 'openwindow',[0 0 0],[]);
 
-
+t_start = GetSecs;
 [win, windowRect] = Screen(screenid, 'openwindow',[125 125 125],[]);
 %hz=Screen('NominalFrameRate', win, 1, 20);
 Screen('GetFlipInterval',win);
@@ -58,7 +60,7 @@ repeatTraining = true; % There's an option to not repeat at the end of loop
 while repeatTraining
 
 l = 0;
-instructions = '1\5\nFirst - you will see 5 videos showing NEUTRAL expressions,\nfollowed by fixation cross (4-6 seconds).\nYou dont have to do anything\njust observe the facial expressions';
+instructions = '1\5\nFirst - you will see 5 videos showing NEUTRAL expressions,\nfollowed by fixation cross (.5s).\nYou dont have to do anything\njust observe the facial expressions';
 func_show_instructions(win,instructions,buttons,30);
 % Neutral
 for i = 1:5
@@ -66,7 +68,8 @@ l=l+1;
 moviename = myPractice(l).moviename;
 %[pressedKey_video,pressedTimes_video,t_video_on,t_video_off] = func_playmovie_with_response_scanner(moviename,win,windowRect,buttons);
 [pressedKey_video,pressedTimes_video,t_video_on,t_video_off] = func_playmovie_with_response_scanner_frames(moviename,win,windowRect,buttons,fps);
-func_FixCross_jittered_ISI(win,buttons);
+%func_FixCross_jittered_ISI(win,buttons);
+func_FixCross_fixed_ISI(win,buttons,ISI_train);
 end
 
 
@@ -78,7 +81,8 @@ l=l+1;
 moviename = myPractice(l).moviename;
 %[pressedKey_video,pressedTimes_video,t_video_on,t_video_off] = func_playmovie_with_response_scanner(moviename,win,windowRect,buttons);
 [pressedKey_video,pressedTimes_video,t_video_on,t_video_off] = func_playmovie_with_response_scanner_frames(moviename,win,windowRect,buttons,fps);
-func_FixCross_jittered_ISI(win,buttons);
+%func_FixCross_jittered_ISI(win,buttons);
+func_FixCross_fixed_ISI(win,buttons,ISI_train);
 end
 
 
@@ -90,7 +94,8 @@ l=l+1;
 moviename = myPractice(l).moviename;
 %[pressedKey_video,pressedTimes_video,t_video_on,t_video_off] = func_playmovie_with_response_scanner(moviename,win,windowRect,buttons);
 [pressedKey_video,pressedTimes_video,t_video_on,t_video_off] = func_playmovie_with_response_scanner_frames(moviename,win,windowRect,buttons,fps);
-func_FixCross_jittered_ISI(win,buttons)
+%func_FixCross_jittered_ISI(win,buttons)
+func_FixCross_fixed_ISI(win,buttons,ISI_train);
 end
 
 
@@ -102,7 +107,8 @@ l=l+1;
 moviename = myPractice(l).moviename;
 %[pressedKey_video,pressedTimes_video,t_video_on,t_video_off] = func_playmovie_with_response_scanner(moviename,win,windowRect,buttons);
 [pressedKey_video,pressedTimes_video,t_video_on,t_video_off] = func_playmovie_with_response_scanner_frames(moviename,win,windowRect,buttons,fps);
-func_FixCross_jittered_ISI(win,buttons);
+%func_FixCross_jittered_ISI(win,buttons);
+func_FixCross_fixed_ISI(win,buttons,ISI_train);
 end
 
 
@@ -114,7 +120,8 @@ l=l+1;
 moviename = myPractice(l).moviename;
 %[pressedKey_video,pressedTimes_video,t_video_on,t_video_off] = func_playmovie_with_response_scanner(moviename,win,windowRect,buttons);
 [pressedKey_video,pressedTimes_video,t_video_on,t_video_off] = func_playmovie_with_response_scanner_frames(moviename,win,windowRect,buttons,fps);
-func_FixCross_jittered_ISI(win,buttons);
+%func_FixCross_jittered_ISI(win,buttons);
+func_FixCross_fixed_ISI(win,buttons,ISI_train);
 end
 
 
@@ -138,6 +145,7 @@ instructions = ['This is a test phase\n' ...
     'If the video shows NEUTRAL facial expression\n' ...
     'press the 3 on the keyboard\n' ...
     'during the fixation cross.\n' ...
+    'you will have 3 seconds to respond\n'...
     'Press SPACE to start'];
  
 func_show_instructions(win,instructions,buttons,30);
@@ -149,7 +157,7 @@ l=l+1;
 moviename = myPractice(l).moviename;
 %[pressedKey_video,pressedTimes_video,t_video_on,t_video_off] = func_playmovie_with_response_scanner(moviename,win,windowRect,buttons);
 [pressedKey_video,pressedTimes_video,t_video_on,t_video_off] = func_playmovie_with_response_scanner_frames(moviename,win,windowRect,buttons,fps);
-[pressedKey,pressedTimes,t_cross_on,t_cross_off] = func_FixCross_jittered_ISI_with_response_color(win,myPractice(l).isTarget,buttons,cross_colors);
+[pressedKey,pressedTimes,t_cross_on,t_cross_off] = func_FixCross_jittered_ISI_with_response_color(win,myPractice(l).isTarget,buttons,cross_colors,ISI_test);
 myPractice(l).isPressed = ~isempty(pressedKey);
 end
 acc= mean([myPractice(l-9:l).isPressed]==[myPractice(l-9:l).isTarget]);
@@ -163,7 +171,7 @@ l=l+1;
 moviename = myPractice(l).moviename;
 %[pressedKey_video,pressedTimes_video,t_video_on,t_video_off] = func_playmovie_with_response_scanner(moviename,win,windowRect,buttons);
 [pressedKey_video,pressedTimes_video,t_video_on,t_video_off] = func_playmovie_with_response_scanner_frames(moviename,win,windowRect,buttons,fps);
-[pressedKey,pressedTimes,t_cross_on,t_cross_off] = func_FixCross_jittered_ISI_with_response_color(win,myPractice(l).isTarget,buttons,cross_colors);
+[pressedKey,pressedTimes,t_cross_on,t_cross_off] = func_FixCross_jittered_ISI_with_response_color(win,myPractice(l).isTarget,buttons,cross_colors,ISI_test);
 myPractice(l).isPressed = ~isempty(pressedKey);
 end
 acc = mean([myPractice(l-9:l).isPressed]==[myPractice(l-9:l).isTarget]);
@@ -177,7 +185,7 @@ l=l+1;
 moviename = myPractice(l).moviename;
 %[pressedKey_video,pressedTimes_video,t_video_on,t_video_off] = func_playmovie_with_response_scanner(moviename,win,windowRect,buttons);
 [pressedKey_video,pressedTimes_video,t_video_on,t_video_off] = func_playmovie_with_response_scanner_frames(moviename,win,windowRect,buttons,fps);
-[pressedKey,pressedTimes,t_cross_on,t_cross_off] = func_FixCross_jittered_ISI_with_response_color(win,myPractice(l).isTarget,buttons,cross_colors);
+[pressedKey,pressedTimes,t_cross_on,t_cross_off] = func_FixCross_jittered_ISI_with_response_color(win,myPractice(l).isTarget,buttons,cross_colors,ISI_test);
 myPractice(l).isPressed = ~isempty(pressedKey);
 end
 acc= mean([myPractice(l-9:l).isPressed]==[myPractice(l-9:l).isTarget]);
@@ -191,7 +199,8 @@ keyPressed = func_show_instructions(win,instructions,buttons,30);
 repeatTesting = ~strcmp(keyPressed,buttons.enter);
 end
 
-
+    
 % That's all folks
 close all;sca;
 
+disp(sprintf('Practice Duration: %.2f minutes',(GetSecs-t_start)/60));

@@ -1,4 +1,4 @@
-function [pressedKey,pressedTimes,t_cross_on,t_cross_off] = func_FixCross_jittered_ISI_with_response_color(win,istarget,buttons,cross_colors,ISI)
+function [pressedKey,pressedTimes,t_cross_on,t_cross_off] = func_FixCross_stored_ISI_with_response_color(win,istarget,buttons,cross_colors,trial,vec_ISIs)
 
 oldTextSize = Screen('TextSize', win, 100);
 DrawFormattedText(win,'+','center','center',[255 255 255]);
@@ -6,6 +6,7 @@ DrawFormattedText(win,'+','center','center',[255 255 255]);
 
 
 %ISI = 4 + (8-4) .* rand; % rand ISI between 4 and 8
+ISI = vec_ISIs(trial); % from stored/shuffled
 
 pressedKey = [];
 pressedTimes = [];
